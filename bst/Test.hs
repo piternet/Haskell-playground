@@ -12,9 +12,4 @@ main = do
        putStrLn $ if check sortedList then "OK, sorted" else "Error, not sorted"
 
 check :: (Ord a) => [a] -> Bool 
-check l = _check l True 
-    where
-        _check [] acc = acc
-        _check [x] acc = acc
-        _check (h:ht:t) acc = 
-            _check t ((ht >= h) && acc)
+check l = all (\(x, y) -> x <= y) (zip l $ tail l)
