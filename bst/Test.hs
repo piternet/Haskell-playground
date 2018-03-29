@@ -11,9 +11,10 @@ main = do
        print $ sortBST sortedList
        putStrLn $ if check sortedList then "OK, sorted" else "Error, not sorted"
 
-check :: (Ord a, Num a) => [a] -> Bool 
-check l = _check l (-1) True 
+check :: (Ord a) => [a] -> Bool 
+check l = _check l True 
     where
-        _check [] _ acc = acc
-        _check (h:t) prev acc = 
-            _check t h ((h >= prev) && acc)
+        _check [] acc = acc
+        _check [x] acc = acc
+        _check (h:ht:t) acc = 
+            _check t ((ht >= h) && acc)
